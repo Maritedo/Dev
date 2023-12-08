@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link href="style/theme.css" rel="stylesheet" type="text/css">
+    <link href="style/style.css" rel="stylesheet" type="text/css">
+    <style>
+        .layer_middle {
+            &>div {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+        }
+
+        .container>* {
+            left: 50%;
+            right: 50%;
+            margin: 8px;
+        }
+
+        span {
+            display: flexbox;
+
+            &>p {
+                display: inline;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper layer_base">
+        <div class="layer_middle">
+            <div class="container">
+                <div></div>
+                <h2 align="center">注册成功</h2>
+                <div></div>
+            </div>
+            <div class="layer_content container">
+                <canvas id="cvs" width="50" height="50" style="background-color: #999;">Canvas is not supported on your
+                    explorer!</canvas>
+                <div>
+                    <span>
+                        账号：<p id="username"></p>
+                    </span>
+                    <br>
+                    <span>
+                        密码：<p id="password"></p>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script type="text/javascript" src="lib/library.js"></script>
+<script type="text/javascript">
+
+    $("#username").innerText = args["username"];
+    $("#password").innerText = args["password"];
+    cvs = $("#cvs");
+    ctx = cvs.getContext('2d');
+    var img = new Image();
+    img.src = decodeURIComponent(args["avator"]);
+    img.onload = function () {
+        ctx.drawImage(img, 0, 0, cvs.width, cvs.height);
+    };
+</script>
+
+</html>

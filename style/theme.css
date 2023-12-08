@@ -1,0 +1,335 @@
+/*
+    尝试做一个拟态风格主题CSS
+*/
+
+/**
+*  基本层级样式
+**/
+@font-face {
+  font-family: "HYWH";
+  src: url("font/HYWH.ttf");
+  font-weight: normal;
+  font-style: normal;
+}
+
+:root {
+  --outer-border: 12px;
+  --inner-border: 12px;
+  --radius-small: 4px;
+  --shadow-3:
+    0px -6px 16px -8px rgba(0, 0, 0, 0.08),
+    0px -9px 28px 0px rgba(0, 0, 0, 0.05),
+    0px -12px 48px 16px rgba(0, 0, 0, 0.03);
+  --shadow-1: 0px -1px 2px -2px rgba(0, 0, 0, 0.16),
+    0px -3px 6px 0px rgba(0, 0, 0, 0.12),
+    0px -5px 12px 4px rgba(0, 0, 0, 0.09);
+  --shadow-in-1: inset 0px -1px 2px -2px rgba(0, 0, 0, 0.16),
+    inset 0px -3px 6px 0px rgba(0, 0, 0, 0.12),
+    inset 0px -5px 12px 4px rgba(0, 0, 0, 0.09);
+  --shadow-in-2: inset 0px -1px 2px -2px rgba(0, 0, 0, 0.5),
+    inset 0px -3px 6px 0px rgba(0, 0, 0, 0.12),
+    inset 0px -5px 12px 4px rgba(0, 0, 0, 0.09);
+}
+
+.layer_base {
+  width: 100%;
+}
+
+.layer_middle {
+  --margin-lr: min(5%, 64px);
+  margin-top: 12px;
+  margin-left: var(--margin-lr);
+  margin-right: var(--margin-lr);
+  padding: 36px;
+  border-radius: var(--outer-border);
+  background-color: #fff;
+  background-color: -webkit-linear-gradient(145deg, #ebebeb, #d4d4d4);
+  box-shadow: var(--shadow-1)
+}
+
+.layer_content {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  margin: 0;
+  padding: calc(2 * var(--radius-small)) 0;
+  border-top: 1.3px dashed black;
+
+  & > td {
+    display: flexbox;
+    box-sizing: border-box;
+  }
+}
+
+.title {
+  margin: 0;
+  transform: translateY(28px);
+  text-align: center;
+  font-size: 28px;
+  font-weight: 500;
+  color: #000000;
+  text-shadow: -1px -1px 4px #ffffff;
+}
+
+h1 {
+  text-align: center;
+  font-size: 64px;
+  font-weight: normal;
+  transform: translateY(16px);
+  text-shadow: 2px 2px 2px 3px #525252, -2px -2px 6px #b3b3b3;
+  margin: 0;
+}
+
+/**
+*  各种输入
+**/
+
+/* 输入框 */
+select,
+input[list],
+input[type="text"],
+input[type="number"],
+input[type="password"],
+input[type="email"],
+input[type="date"] {
+  transition: 0.4s all;
+  box-sizing: border-box;
+  margin: 4px;
+  border: 0;
+  border-radius: 8px;
+  min-width: 240px;
+  line-height: 30px;
+  height: 30px;
+  padding-left: 0.5em;
+  color: #000;
+  font-size: 14px;
+  font-weight: normal;
+  background-color: #ebebeb;
+
+  &:disabled {
+    color: #000000;
+    font-weight: bolder;
+    background-color: #6c6c6c86;
+  }
+}
+
+textarea {
+  transition: 0.4s all;
+  box-sizing: border-box;
+  margin: 4px;
+  border: 0;
+  border-radius: 8px;
+  min-width: 240px;
+  padding: 0.5em;
+  color: #000;
+  font-size: 14px;
+  font-weight: normal;
+  background-color: #ebebeb;
+
+  &:disabled {
+    color: #000000;
+    font-weight: bolder;
+    background-color: #6c6c6c86;
+  }
+}
+
+
+canvas {
+  width: auto;
+  height: auto;
+  margin: 4px;
+  box-sizing: content-box;
+  border: 1.2px solid #333;
+  background-color: #aaa;
+  border-radius: 8px;
+  /* 避免连续点击时选择中文 */
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+input[type="file"] {
+  display: inline-flexbox;
+  vertical-align: middle;
+  padding: 2px;
+  margin: 4px;
+  border-radius: 4px;
+  color: #333;
+}
+
+input#file-upload-button {
+  margin: auto;
+  border: 0;
+  background: transparent;
+}
+
+/* 多选框和单选框 */
+label.checkbox_custom {
+  display: inline-block;
+  box-sizing: border-box;
+  height: max-content;
+  border: 0;
+  padding: 0;
+  margin: 4px 0 4px 4px;
+  width: fit-content;
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+  display: none;
+  height: 30px;
+
+  & + .checkbox {
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+
+    position: relative;
+    display: inline-block;
+    box-sizing: border-box;
+    vertical-align: middle;
+    white-space: nowrap;
+    transition: 0.2s all;
+
+    height: 30px;
+    line-height: 30px;
+    min-width: 30px;
+    font-size: 16px;
+    margin: 0;
+    padding-left: 23px;
+    padding-right: 7px;
+    border-radius: 8px;
+    color: #747474;
+    font-weight: bold;
+    background: #edd;
+  }
+
+  &:checked + .checkbox {
+    color: #333;
+    background: #ded;
+  }
+
+  &:not(:checked):hover + .checkbox {
+    color: #000;
+  }
+
+  &:checked + .checkbox::after,
+  &:checked + .checkbox::before {
+    content: "";
+    position: absolute;
+    background-color: #66e03d;
+    border-radius: 1px;
+    transition: 0.2s all;
+  }
+
+  &:checked + .checkbox::before {
+    top: 15.12px;
+    left: 11.26px;
+    width: 2px;
+    height: 6px;
+    transform: rotateZ(-45deg);
+  }
+
+  &:checked + .checkbox::after {
+    top: 8.6px;
+    left: 15.99px;
+    width: 2px;
+    height: 13px;
+    transform: rotateZ(35deg);
+  }
+
+  &:not(:checked) + .checkbox::after,
+  &:not(:checked) + .checkbox::before {
+    content: "";
+    position: absolute;
+    background-color: #ff2f2f;
+    top: 8px;
+    left: 14px;
+    width: 2px;
+    height: 14px;
+    border-radius: 1px;
+    transition: 0.2s all;
+  }
+
+  /*未选中复选框常规状态*/
+  &:not(:checked) + .checkbox::before {
+    transform: rotateZ(45deg);
+  }
+
+  &:not(:checked) + .checkbox::after {
+    transform: rotateZ(-45deg);
+  }
+
+  /*未选中复选框获得焦点或被悬停*/
+  &[type="checkbox"]:not(:checked):hover + .checkbox::before,
+  &[type="checkbox"]:not(:checked) ~ .checkbox:focus::before {
+    background-color: #0c55ff;
+    transform: rotateZ(0deg);
+  }
+
+  &[type="checkbox"]:not(:checked):hover + .checkbox::after,
+  &[type="checkbox"]:not(:checked) ~ .checkbox:focus::after {
+    background-color: #0c55ff;
+    transform: rotateZ(-90deg);
+  }
+
+  /*未选中单框获得焦点或被悬停*/
+  &[type="radio"]:not(:checked):hover + .checkbox::before,
+  &[type="radio"]:not(:checked) ~ .checkbox:focus::before {
+    transform: rotateZ(135deg);
+  }
+
+  &[type="radio"]:not(:checked):hover + .checkbox::after,
+  &[type="radio"]:not(:checked) ~ .checkbox:focus::after {
+    transform: rotateZ(45deg);
+  }
+}
+
+/* 按钮 */
+button,
+input[type="button"],
+input[type="submit"],
+input[type="reset"] {
+  border: 0;
+  box-sizing: border-box;
+  height: 30px;
+  line-height: 30px;
+  padding: auto;
+  padding-left: 16px;
+  padding-right: 16px;
+  font-size: 16px;
+  margin: 10px;
+  transition: 0.2s all;
+  border-radius: 6px;
+  /*默认*/
+  font-weight: bold;
+  color: #333;
+  box-shadow: inset 0px 0px 0px #fff0, inset 0px 0px 0px #fff0,
+    2px 2px 4px #787878, -1px -1px 2px #f9f9f9;
+  background: linear-gradient(145deg, #ffffff, #e6e6e6);
+
+  /*悬停*/
+  &:hover {
+    color: #000;
+    box-shadow: inset 0px 0px 0px #fff0, inset 0px 0px 0px #fff0,
+      2px 2px 4px #2b2b2b, -1px -1px 4px #f0f0f0;
+    background: linear-gradient(145deg, #ffffff, #e6e6e6);
+  }
+
+  /*按下*/
+  &:active {
+    color: #666;
+    box-shadow: inset 2px 2px 6px #8f8f8f, inset -2px -2px 6px #ffffff,
+      0px 0px 0px #fff0, 0px 0px 0px #fff0;
+    background: linear-gradient(145deg, #dddddd, #ebebeb);
+  }
+
+  /*禁用*/
+  &:disabled {
+    font-weight: normal;
+    color: #000;
+    box-shadow: inset 2px 2px 6px #0000005a, inset -2px -2px 6px #ffffffb3,
+      0px 0px 0px #fff0, 0px 0px 0px #fff0;
+    background: linear-gradient(225deg, #b8b8b8, #b8b8b8);
+  }
+}

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <!-- <link href="../style/theme.css" rel="stylesheet" type="text/css"> -->
+    <link href="test.css" rel="stylesheet" type="text/css">
+    <style>
+        * {
+            user-select: none;
+        }
+
+        body {
+            background-color: azure;
+        }
+
+        input[type='checkbox'] {
+            display: none;
+        }
+
+        canvas {
+            transition: all .1s;
+            margin: 16px;
+        }
+
+        span {
+            border-radius: 2px;
+            padding: 8px;
+            background-color: #eee;
+            box-shadow: 1px 1px 6px #000, -1px -1px 6px #fff;
+            margin: 8px;
+        }
+
+        button {
+            border: 0;
+            border-radius: 10px;
+            padding: 10px;
+            font-size: 18px;
+            font-weight: bold;
+
+            &:not(.on) {
+                background-color: #ff3939;
+            }
+
+            &.on {
+                background-color: #4bff3a;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <p id="fps">FPS</p>
+    <label class="checkbox_custom">
+        <input type="checkbox" />
+        <span class="checkbox" onclick="onToggleDebug();">测试</span>
+    </label>
+    <label class="checkbox_custom">
+        <input type="checkbox" />
+        <span class="checkbox" onclick="onToggleCache();">缓存</span>
+    </label>
+    <label class="checkbox_custom">
+        <input type="checkbox" />
+        <span class="checkbox" onclick="onToggleAnim();">动画</span>
+    </label>
+    <br>
+    <br>
+    长度:<input type="range" min="1" max="400" id="len" oninput="onLengInput();" onchange="onLengChange();" value="4">
+    高度:<input type="range" min="20" max="800" id="siz" oninput="onSizeInput();" onchange="onSizeChange();" value="200">
+    <br>
+    <p id="delayTime"></p>
+    <p id="info"></p>
+    <canvas v-size="200" v-len="20" verification style="background-color: #000;"></canvas>
+
+</body>
+<script type="text/javascript" src="../lib/library.js"></script>
+<script type="text/javascript" src="../lib/verification_dev.js"></script>
+<script type="text/javascript" src="test.js"></script>
+
+</html>

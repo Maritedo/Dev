@@ -1,0 +1,215 @@
+/* 基本样式 */
+:root {
+  --head_width: 10rem;
+  --tip_width: 22rem;
+}
+
+* {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-weight: normal;
+}
+
+html,
+body,
+head,
+form {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(224, 224, 224);
+}
+
+/* 表单和表格基本样式 */
+fieldset {
+  box-sizing: border-box;
+  border: 0;
+}
+
+table {
+  box-sizing: border-box;
+  width: 100%;
+}
+
+tr {
+  display: inline-flex;
+}
+
+td,
+th {
+  padding: 8px 4px;
+}
+
+/* 项目名 & 输入区域 & 提示词 */
+.td_head {
+  font-size: 18px;
+  width: var(--head_width);
+
+  & > p {
+    display: inline;
+  }
+
+  &::after {
+    content: ":";
+    position: absolute;
+  }
+}
+
+.td_ele {
+  position: relative;
+  padding: 4px;
+  width: calc(100% - var(--head_width) - var(--tip_width));
+}
+
+.indicater {
+  --bgcolor: #ede;
+  position: absolute;
+  top: 0;
+  height: 100%;
+  line-height: 100%;
+  background-color: var(--bgcolor);
+  top: 100%;
+  width: 100%;
+  border-radius: 8px;
+  p {
+    padding-left: .5em;
+    padding-right: .5em;
+  }
+  &::before{
+    content: '';
+    background-color: var(--bgcolor);
+    rotate: 45deg;
+    width: 24px;
+    height: 24px;
+    left: calc(50% - 12px);
+    position: absolute;
+  }
+}
+
+.td_tip {
+  width: var(--tip_width);
+}
+
+input.error {
+  transition: all 0.2s;
+  color: #ff0000;
+  text-decoration: underline;
+}
+
+label {
+  & > input.error {
+    & {
+      outline: #ff4040;
+    }
+  }
+}
+
+.clickable {
+  cursor: pointer;
+  text-decoration: underline;
+  color: #180ea4;
+  font-weight: bold;
+  margin: auto 0.1em;
+}
+
+.emphasizer {
+  position: relative;
+
+  &.td_head::before {
+    content: "*";
+    position: relative;
+    left: 4px;
+    color: #ff4040;
+  }
+
+  &.tip::before {
+    content: "*";
+    position: absolute;
+    left: -8px;
+    top: 0px;
+    color: #ff4040;
+  }
+
+  .tip:not(&):first-letter::before {
+    content: "*";
+    position: absolute;
+    left: -8px;
+    top: 0px;
+    color: #000000;
+  }
+}
+
+.tip {
+  position: relative;
+  text-indent: 10px;
+  margin: 4px;
+  padding: 0;
+  text-indent: 1.3em;
+  word-break: break-all;
+
+  & > strong {
+    font-weight: bold;
+    color: #180ea4;
+  }
+}
+
+.footer {
+  padding-bottom: 48px;
+  display: flexbox;
+}
+
+.notif_box {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  transition: all 0.5s ease-in-out;
+  top: 12px;
+  right: 12px;
+  min-width: min(40%, 20rem);
+  box-sizing: border-box;
+  padding: 12px;
+  border-radius: 4px;
+  background-color: #fff;
+  backdrop-filter: blur(0.15rem);
+  -webkit-backdrop-filter: blur(0.15rem);
+  box-shadow: 0px 1px 2px -2px rgba(0, 0, 0, 0.16),
+    0px 3px 6px 0px rgba(0, 0, 0, 0.12),
+    0px 5px 12px 4px rgba(0, 0, 0, 0.09);
+
+  & > span.notif_msg_box {
+    display: inherit;
+    overflow: hidden;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+
+  & > span > p {
+    margin: auto;
+    padding: auto;
+    font-size: 16px;
+    font-weight: bolder;
+    color: #000;
+    word-wrap: break-word;
+  }
+
+  &.hidden {
+    transform: translateX(120%);
+  }
+}
+
+div.verification_container {
+  display: inline-flex;
+
+  & > p {
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+    line-height: 100%;
+    color: #666;
+  }
+}
