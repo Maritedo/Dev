@@ -114,7 +114,9 @@ input[type="date"] {
 }
 
 textarea {
-  transition: 0.4s all;
+  transition-property: color, font, background;
+  transition-duration: .4s;
+  transition-timing-function: ease;
   box-sizing: border-box;
   margin: 4px;
   border: 0;

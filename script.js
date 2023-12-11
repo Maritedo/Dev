@@ -1,4 +1,3 @@
-var err_input = null;
 var province, city, region, dateSelec, avatorDisp;
 
 window.onload = () => {
@@ -16,12 +15,18 @@ window.onload = () => {
   CanvasFix($("canvas#display"), false);
 
   $("#avatorFile").addEventListener("change", (e) => {
-    var elem = e.srcElement;
+    var elem = e.target;
     var file = elem.files[0];
-    if (file && file.type && !/image\/\w+/.test(file.type)) {
-      alert("格式错误！");
+    if (file && file.type) {
+      if (!/image\/\w+/.test(file.type)) {
+        alert("格式错误！");
+        return;
+      }
+    } else {
+      alert("文件错误");
       return;
     }
+
     var reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onload = (e) => {
@@ -47,7 +52,7 @@ window.onload = () => {
   });
 };
 
-var initDefault = () => {
+function initDefault() {
   $$("table input").forEach((ele) => {
     ele.addEventListener("blur", onBlurHandler);
     ele.addEventListener("focus", onFocusHandler);
@@ -72,7 +77,7 @@ var initDefault = () => {
       }
     });
   });
-};
+}
 
 var changed = [
   function (e) {
@@ -125,9 +130,9 @@ var re = [
   },
 ];
 
-var removerAllOptions = (e) => {
+function removerAllOptions(e) {
   e.options.length = 1;
-};
+}
 
 var initLocSelect = function () {
   removerAllOptions(province);
@@ -143,82 +148,107 @@ var initLocSelect = function () {
   dateSelec.valueAsDate = new Date();
 };
 
-var onBlurHandler = (e) => {
-  verify(e.srcElement, true);
-};
-
-var onFocusHandler = (e) => {
-  elem = e.srcElement;
-  val = elem.value;
-  elem.classList.remove("error");
-};
-
-var onClickHandler = (e) => {};
-
-var onHoverHandler = (e) => {};
-
-var navError = () => {
-  if (err_input) {
-    err_input.focus();
-    err_input = null;
+function onBlurHandler(e) {
+  let last;
+  if (verify(e.target, true) && (last = verifStates.get(e.target))) {
+    last();
   }
-};
+}
 
-var showWarning = (msg) => {
-  $("#notif").classList.remove("hidden");
-  $("#notif_msg").innerText = msg;
-};
+function onFocusHandler(e) {
+  let elem = e.target, last;
+  if ((last = verifStates.get(elem)))
+    last();
+  elem.classList.remove("error");
+}
 
-var closeWarning = () => {
-  $("#notif").classList.add("hidden");
-};
+function onClickHandler(e) { }
 
-var verify = (elem, allowBlank = false) => {
+function onHoverHandler(e) { }
+
+// 避免重复弹出气泡
+const verifStates = new WeakMap();
+
+function verify(elem, allowBlank = false) {
   val = elem.value;
-  if (rules[elem.id] && ruleTest(rules[elem.id], val, allowBlank)) {
-    showWarning(err_ls);
-    err_input = elem;
+  let result;
+  if (rules[elem.id] && (result = ruleTest(rules[elem.id], val, allowBlank))) {
+    let lastMsgBox;
+    if ((lastMsgBox = verifStates.get(elem)))
+      lastMsgBox();
+    verifStates.set(elem, showMsgAfter(elem, result, () => {
+      elem.focus();
+      elem.scrollIntoView();
+    }));
     elem.classList.add("error");
     return false;
-  } else {
-    closeWarning();
-    return true;
   }
-};
+  return true;
+}
 
-var finalCheck = () => {
+function finalCheck() {
   var bol = true;
   var checkItems = $$("form table input");
   for (var _i in checkItems) {
     var ele = checkItems[_i];
     if (!verify(ele, (allowBlank = false))) {
-      bol = false;
-      break;
+      return false;
     }
   }
-  if (
-    province.selectedIndex == 0 ||
-    city.selectedIndex == 0 ||
-    region.selectedIndex == 0
-  ) {
-    showWarning("未选择籍贯");
-    bol = false;
-  }
+  [province, city, region].find(elem => {
+    if (elem.selectedIndex == 0) {
+      let lastMsgBox;
+      if ((lastMsgBox = verifStates.get(elem)))
+        lastMsgBox();
+      verifStates.set(elem, showMsgAfter(elem, '未选择籍贯'));
+      bol = false;
+      return true
+    }
+  })
   return bol;
-};
+}
 
-var formReset = () => {
-  // $$("form input:not([type='button']):not([type='submit'])").forEach((ele) => {
-  //     ele.value = '';
-  //     if (ele.checked)
-  //         ele.checked = false;
-  //     ele.classList.remove('error');
-  // });
+function formReset() {
   $("canvas[verification]").verification.refresh();
   avatorDisp
     .getContext("2d")
     .clearRect(0, 0, avatorDisp.width, avatorDisp.height);
   initLocSelect();
-
   dateSelec.valueAsDate = new Date();
-};
+}
+
+function showMsgAfter(inputEle, msg, callback = undefined) {
+  // 容器
+  const element = document.createElement("div");
+  element.classList.add("indicater", "hidden", "left");
+  element.style.zIndex = 1000000;
+  // 文本
+  const text = document.createElement("p");
+  text.innerText = msg;
+  // 将文本加入容器
+  element.appendChild(text);
+  // 将容器插入到DOM中显示
+  insertAfter(inputEle, element);
+  // 延时显示，删除hidden css类让信息框显示出来
+  setTimeout(() => {
+    element.classList.remove("hidden");
+  }, 10);
+  // 监听器，用于元素淡出动画完成时将元素从布局流删除
+  const _dispose = () => {
+    element.addEventListener("transitionend", function _listener(e) {
+      // if (e.propertyName != "opacity") return;
+      if (element.parentElement) {
+        element.parentElement.removeChild(element);
+        element.onclick = undefined;
+        element.removeEventListener("transiotionend", _listener);
+      }
+    });
+    element.classList.add("hidden");
+  };
+  element.onclick = () => {
+    _dispose();
+    callback && callback();
+  };
+  return _dispose;
+}
+

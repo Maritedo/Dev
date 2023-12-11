@@ -1,96 +1,74 @@
 <!DOCTYPE html>
 <html lang="zh-cn">
-  <head>
-    <meta charset="UTF-8" />
-    <meta lang="zh-cn" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>用户注册</title>
-    <link href="style/theme.css" rel="stylesheet" type="text/css" />
-    <link href="style/style.css" rel="stylesheet" type="text/css" />
-  </head>
 
-  <body>
-    <div class="wrapper layer_base">
-      <h1 align="center">用户注册</h1>
-      <form
-        name="registry"
-        action="registry.html"
-        method="get"
-        onsubmit="return finalCheck();"
-      >
-        <fieldset class="layer_middle">
-          <legend class="title">用户名</legend>
-          <table>
-            <tbody>
-              <tr class="layer_content">
-                <td class="td_head emphasizer" align="right">
-                  <p>通行证用户名</p>
-                </td>
-                <td class="td_ele">
-                  <input
-                    type="text"
-                    name="username"
-                    id="username"
-                    placeholder="请在此输入您的用户名..."
-                    required
-                  />
-                  <div class="indicater"><p>测试文本</p></div>
-                </td>
-                <td class="td_tip">
-                  <p class="tip emphasizer">
-                    由<strong>字母(a~z，不区分大小写)</strong>，<strong>数字(0~9)</strong>，<strong>+</strong>，<strong>-</strong>和<strong>_</strong>组成
-                  </p>
-                  <p class="tip emphasizer">需以数字或字母作为首位和末尾</p>
-                  <p class="tip emphasizer">长度应为<strong>4~18</strong></p>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </fieldset>
-        <fieldset class="layer_middle">
-          <legend class="title">安全设置</legend>
-          <table>
-            <tbody>
-              <tr class="layer_content">
-                <td class="td_head emphasizer" align="right">
-                  <p>登录密码</p>
-                </td>
-                <td class="td_ele">
-                  <input
-                    type="password"
-                    name="password"
-                    id="password"
-                    placeholder="请输入登录密码..."
-                    required
-                  />
-                  <br />
-                  <input
-                    type="password"
-                    id="password_confirm"
-                    placeholder="请再次输入登录密码..."
-                    required
-                  />
-                </td>
-                <td class="td_tip">
-                  <p class="tip emphasizer">
-                    密码长度<strong>6~10</strong>位，字母区分大小写
-                  </p>
-                  <p class="tip emphasizer">两次密码需输入一致</p>
-                </td>
-              </tr>
-              <tr class="layer_content">
-                <td class="td_head emphasizer" align="right">
-                  <p>密码保护问题</p>
-                </td>
-                <td class="td_ele">
-                  <input
-                    type="text"
-                    name="security_question"
-                    id="security_question"
-                    list="sec_question_list"
-                    placeholder="请选择一个问题..."
-                    required
-                  />
+<head>
+  <meta charset="UTF-8" />
+  <meta lang="zh-cn" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>用户注册</title>
+  <link href="style/theme.css" rel="stylesheet" type="text/css" />
+  <link href="style/style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+  <div class="wrapper layer_base">
+    <h1 align="center">用户注册</h1>
+    <form name="registry" action="registry.html" method="get" onsubmit="return finalCheck()">
+      <fieldset class="layer_middle">
+        <legend class="title">用户名</legend>
+        <table>
+          <tbody>
+            <tr class="layer_content">
+              <td class="td_head emphasizer" align="right">
+                <p>通行证用户名</p>
+              </td>
+              <td class="td_ele">
+                <div>
+                  <input type="text" name="username" id="username" placeholder="请在此输入您的用户名..." required />
+                </div>
+              </td>
+              <td class="td_tip">
+                <p class="tip emphasizer">
+                  由<strong>字母(a~z，不区分大小写)</strong>，<strong>数字(0~9)</strong>，<strong>+</strong>，<strong>-</strong>和<strong>_</strong>组成
+                </p>
+                <p class="tip emphasizer">需以数字或字母作为首位和末尾</p>
+                <p class="tip emphasizer">长度应为<strong>4~18</strong></p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </fieldset>
+      <fieldset class="layer_middle">
+        <legend class="title">安全设置</legend>
+        <table>
+          <tbody>
+            <tr class="layer_content">
+              <td class="td_head emphasizer" align="right">
+                <p>登录密码</p>
+              </td>
+              <td class="td_ele">
+                <div>
+                  <input type="password" name="password" id="password" placeholder="请输入登录密码..." required />
+                </div>
+                <div>
+                  <input type="password" id="password_confirm" placeholder="请再次输入登录密码..." required />
+                </div>
+              </td>
+              <td class="td_tip">
+                <p class="tip emphasizer">
+                  密码长度<strong>6~10</strong>位，字母区分大小写
+                </p>
+                <p class="tip emphasizer">两次密码需输入一致</p>
+              </td>
+            </tr>
+            <tr class="layer_content">
+              <td class="td_head emphasizer" align="right">
+                <p>密码保护问题</p>
+              </td>
+              <td class="td_ele">
+                <div>
+                  <input type="text" name="security_question" id="security_question" list="sec_question_list"
+                    placeholder="请选择一个问题..." required />
                   <datalist id="sec_question_list">
                     <option value="你最喜欢的游戏是？" />
                     <option value="你最喜欢的小说是？" />
@@ -98,301 +76,256 @@
                     <option value="你的父母结婚日期是？" />
                     <option value="你的生日是？" />
                   </datalist>
-                  <br />
-                  <input
-                    type="text"
-                    name="sec_ques_ans"
-                    id="sec_ques_ans"
-                    placeholder="请在此输入您的答案..."
-                    required
-                  />
-                </td>
-                <td class="td_tip">
-                  <p class="tip">用于找回账号密码</p>
-                  <p class="tip emphasizer">
-                    问题与答案长度<strong>6~30</strong>位
-                  </p>
-                  <p class="tip emphasizer">答案区分大小写</p>
-                </td>
-              </tr>
-              <tr class="layer_content">
-                <td class="td_head emphasizer" align="right">
-                  <p>密保邮箱</p>
-                </td>
-                <td class="td_ele">
-                  <input
-                    type="email"
-                    name="security_email"
-                    id="security_email"
-                    placeholder="请输入有效的邮箱地址..."
-                    required
-                  />
-                  <br />
-                  <input
-                    type="text"
-                    id="verification"
-                    placeholder="请输入下方验证码..."
-                    required
-                  />
-                  <br />
-                  <div class="verification_container">
-                    <canvas verification v-size="32" v-len="5"></canvas>
-                    <p>(点击验证码刷新)</p>
-                  </div>
-                </td>
-                <td class="td_tip">
-                  <p class="tip">用于找回账号和密码的安全邮箱</p>
-                  <p class="tip emphasizer">
-                    格式为name@address.domain，例如12345@qq.com
-                  </p>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </fieldset>
-        <fieldset class="layer_middle">
-          <legend class="title">个人信息</legend>
-          <table>
-            <tbody>
-              <tr class="layer_content">
-                <td class="td_head emphasizer" align="right">
-                  <p>真实姓名</p>
-                </td>
-                <td class="td_ele">
-                  <input
-                    type="text"
-                    name="name"
-                    id="name"
-                    placeholder="请输入姓名..."
-                    required
-                  />
-                </td>
-                <td class="td_tip">
-                  <p class="tip emphasizer">仅支持中文，不允许添加非中文字符</p>
-                </td>
-              </tr>
-              <tr class="layer_content">
-                <td class="td_head emphasizer" align="right">
-                  <p>性别</p>
-                </td>
-                <td class="td_ele">
-                  <label class="checkbox_custom">
-                    <input type="radio" name="gender" value="male" checked />
-                    <span class="checkbox">男</span>
-                  </label>
-                  <label class="checkbox_custom">
-                    <input type="radio" name="gender" value="female" />
-                    <span class="checkbox">女</span>
-                  </label>
-                </td>
-                <td class="td_tip">
-                  <p class="tip">&nbsp;</p>
-                </td>
-              </tr>
-              <tr class="layer_content">
-                <td class="td_head emphasizer" align="right">
-                  <p>居民身份证号</p>
-                </td>
-                <td class="td_ele">
+                </div>
+                <div>
+                  <input type="text" name="sec_ques_ans" id="sec_ques_ans" placeholder="请在此输入您的答案..." required />
+                </div>
+              </td>
+              <td class="td_tip">
+                <p class="tip">用于找回账号密码</p>
+                <p class="tip emphasizer">
+                  问题与答案长度<strong>6~30</strong>位
+                </p>
+                <p class="tip emphasizer">答案区分大小写</p>
+              </td>
+            </tr>
+            <tr class="layer_content">
+              <td class="td_head emphasizer" align="right">
+                <p>密保邮箱</p>
+              </td>
+              <td class="td_ele">
+                <div>
+                  <input type="email" name="security_email" id="security_email" placeholder="请输入有效的邮箱地址..." required />
+                </div>
+                <div>
+                  <input type="text" id="verification" placeholder="请输入下方验证码..." autocomplete="false" required />
+                </div>
+                <div class="verification_container">
+                  <canvas verification v-size="32" v-len="5"></canvas>
+                  <p>(点击验证码刷新)</p>
+                </div>
+              </td>
+              <td class="td_tip">
+                <p class="tip">用于找回账号和密码的安全邮箱</p>
+                <p class="tip emphasizer">
+                  格式为name@address.domain，例如12345@qq.com
+                </p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </fieldset>
+      <fieldset class="layer_middle">
+        <legend class="title">个人信息</legend>
+        <table>
+          <tbody>
+            <tr class="layer_content">
+              <td class="td_head emphasizer" align="right">
+                <p>真实姓名</p>
+              </td>
+              <td class="td_ele">
+                <div>
+                  <input type="text" name="name" id="name" placeholder="请输入姓名..." required />
+                </div>
+              </td>
+              <td class="td_tip">
+                <p class="tip emphasizer">仅支持中文，不允许添加非中文字符</p>
+              </td>
+            </tr>
+            <tr class="layer_content">
+              <td class="td_head emphasizer" align="right">
+                <p>性别</p>
+              </td>
+              <td class="td_ele">
+                <label class="checkbox_custom">
+                  <input type="radio" name="gender" value="male" checked />
+                  <span class="checkbox">男</span>
+                </label>
+                <label class="checkbox_custom">
+                  <input type="radio" name="gender" value="female" />
+                  <span class="checkbox">女</span>
+                </label>
+              </td>
+              <td class="td_tip">
+                <p class="tip">&nbsp;</p>
+              </td>
+            </tr>
+            <tr class="layer_content">
+              <td class="td_head emphasizer" align="right">
+                <p>居民身份证号</p>
+              </td>
+              <td class="td_ele">
+                <div>
                   <input type="text" name="idcode" id="idcode" required />
-                </td>
-                <td class="td_tip">
-                  <p class="tip">&nbsp;</p>
-                </td>
-              </tr>
-              <tr class="layer_content">
-                <td class="td_head emphasizer" align="right">
-                  <p>出生日期</p>
-                </td>
-                <td class="td_ele">
+                </div>
+              </td>
+              <td class="td_tip">
+                <p class="tip">&nbsp;</p>
+              </td>
+            </tr>
+            <tr class="layer_content">
+              <td class="td_head emphasizer" align="right">
+                <p>出生日期</p>
+              </td>
+              <td class="td_ele">
+                <div>
                   <input type="date" name="birthday" id="birthday" required />
-                </td>
-                <td class="td_tip">
-                  <p class="tip emphasizer">以身份证/户口本为准</p>
-                </td>
-              </tr>
-              <tr class="layer_content">
-                <td class="td_head emphasizer" align="right">
-                  <p>籍贯</p>
-                </td>
-                <td class="td_ele">
+                </div>
+              </td>
+              <td class="td_tip">
+                <p class="tip emphasizer">以身份证/户口本为准</p>
+              </td>
+            </tr>
+            <tr class="layer_content">
+              <td class="td_head emphasizer" align="right">
+                <p>籍贯</p>
+              </td>
+              <td class="td_ele">
+                <div>
                   <select name="province" id="address_province" required>
                     <option value="None" disabled selected>请选择</option>
                   </select>
+                </div>
+                <div>
                   <select name="city" id="address_city" disabled required>
-                    <option value="None" disabled selected>请选择</option>
-                  </select>
+                  <option value="None" disabled selected>请选择</option>
+                </select>
+                </div>
+                <div>
                   <select name="region" id="address_region" disabled required>
-                    <option value="None" disabled selected>请选择</option>
-                  </select>
-                </td>
-                <td class="td_tip">
-                  <p class="tip emphasizer">以身份证/户口本为准</p>
-                </td>
-              </tr>
-              <tr class="layer_content">
-                <td class="td_head" align="right">
-                  <p>个人介绍</p>
-                </td>
-                <td class="td_ele">
-                  <textarea
-                    name="resume"
-                    id="resume"
-                    cols="20"
-                    rows="4"
-                  ></textarea>
-                </td>
-                <td class="td_tip"></td>
-              </tr>
-              <tr class="layer_content">
-                <td class="td_head" align="right">
-                  <p>兴趣爱好</p>
-                </td>
-                <td class="td_ele">
-                  <label class="checkbox_custom">
-                    <input type="checkbox" name="interest" value="音乐" />
-                    <span class="checkbox">音乐</span>
-                  </label>
-                  <label class="checkbox_custom">
-                    <input type="checkbox" name="interest" value="绘画" />
-                    <span class="checkbox">绘画</span>
-                  </label>
-                  <label class="checkbox_custom">
-                    <input type="checkbox" name="interest" value="阅读" />
-                    <span class="checkbox">阅读</span>
-                  </label>
-                  <label class="checkbox_custom">
-                    <input type="checkbox" name="interest" value="运动" />
-                    <span class="checkbox">运动</span>
-                  </label>
-                  <label class="checkbox_custom">
-                    <input type="checkbox" name="interest" value="电子竞技" />
-                    <span class="checkbox">电子竞技</span>
-                  </label>
-                  <label class="checkbox_custom">
-                    <input type="checkbox" name="interest" value="手工" />
-                    <span class="checkbox">手工</span>
-                  </label>
-                  <label class="checkbox_custom">
-                    <input type="checkbox" name="interest" value="摄影" />
-                    <span class="checkbox">摄影</span>
-                  </label>
-                  <label class="checkbox_custom">
-                    <input type="checkbox" name="interest" value="旅游" />
-                    <span class="checkbox">旅游</span>
-                  </label>
-                </td>
-                <td class="td_tip">
-                  <p class="tip">请在给出的选项中选出感兴趣的项目(多选)</p>
-                </td>
-              </tr>
-              <tr class="layer_content">
-                <td class="td_head emphasizer" align="right">
-                  <p>通信地址</p>
-                </td>
-                <td class="td_ele">
-                  <input
-                    type="text"
-                    name="address"
-                    id="address"
-                    placeholder="请输入你的常用地址..."
-                    required
-                  />
-                </td>
-                <td class="td_tip">
-                  <p class="tip">现在定居的地址或常用邮送地址</p>
-                </td>
-              </tr>
-              <tr class="layer_content">
-                <td class="td_head emphasizer" align="right">
-                  <p>邮政编码</p>
-                </td>
-                <td class="td_ele">
-                  <input
-                    type="text"
-                    name="mailcode"
-                    id="mailcode"
-                    placeholder="请输入常住地邮政编码..."
-                    required
-                  />
-                </td>
-                <td class="td_tip">
-                  <p class="tip">通信地址对应的邮政编码</p>
-                </td>
-              </tr>
-              <tr class="layer_content">
-                <td class="td_head" align="right">
-                  <p>头像</p>
-                </td>
-                <td class="td_ele">
-                  <canvas
-                    id="display"
-                    bgcolor="red"
-                    background="red"
-                    width="180"
-                    height="200"
-                  >
-                    Canvas is not supported on your explorer
-                  </canvas>
-                  <br />
-                  <input
-                    type="text"
-                    style="display: none"
-                    name="avator"
-                    id="avatorData"
-                  />
-                  <input type="file" id="avatorFile" accept="image/*" />
-                </td>
-                <td class="td_tip">
-                  <p class="tip">
-                    由于图片文件过大，使用DataUrl传输将出现431错误
-                  </p>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </fieldset>
-        <div align="center" class="footer" style="margin: 10px auto">
-          <input
-            id="btn_compl"
-            type="submit"
-            value="确认"
-            onclick="finalCheck"
-          />
-          <input
-            id="btn_reset"
-            type="reset"
-            value="重置"
-            onclick="formReset()"
-          />
-          <label class="checkbox_custom" style="transform: scale(0.75)">
-            <input type="checkbox" name="plicy" />
-            <span class="checkbox"></span>
-          </label>
-          <p style="display: inline-block">
-            我已阅读并同意<a
-              class="clickable"
-              onclick="((e)=>{alert('用户协议：尚未完成。')})()"
-              tabindex="0"
-              >用户协议</a
-            >
-          </p>
-        </div>
-      </form>
-    </div>
-    <div
-      id="notif"
-      class="notif_box hidden"
-      onclick="navError();closeWarning();"
-    >
-      <span class="notif_msg_box">
-        <p id="notif_msg" align="left"></p>
-      </span>
-    </div>
-  </body>
-  <script type="text/javascript" src="lib/library.js"></script>
-  <script type="text/javascript" src="lib/verification.js"></script>
-  <script type="text/javascript" src="lib/checkrules.js"></script>
-  <script type="text/javascript" src="lib/locs.js"></script>
-  <script type="text/javascript" src="script.js"></script>
+                  <option value="None" disabled selected>请选择</option>
+                </select>
+                </div>
+              </td>
+              <td class="td_tip">
+                <p class="tip emphasizer">以身份证/户口本为准</p>
+              </td>
+            </tr>
+            <tr class="layer_content">
+              <td class="td_head" align="right">
+                <p>个人介绍</p>
+              </td>
+              <td class="td_ele">
+                <div>
+                  <textarea name="resume" id="resume" cols="20" rows="4"></textarea>
+                </div>
+              </td>
+              <td class="td_tip"></td>
+            </tr>
+            <tr class="layer_content">
+              <td class="td_head" align="right">
+                <p>兴趣爱好</p>
+              </td>
+              <td class="td_ele">
+                <label class="checkbox_custom">
+                  <input type="checkbox" name="interest" value="音乐" />
+                  <span class="checkbox">音乐</span>
+                </label>
+                <label class="checkbox_custom">
+                  <input type="checkbox" name="interest" value="绘画" />
+                  <span class="checkbox">绘画</span>
+                </label>
+                <label class="checkbox_custom">
+                  <input type="checkbox" name="interest" value="阅读" />
+                  <span class="checkbox">阅读</span>
+                </label>
+                <label class="checkbox_custom">
+                  <input type="checkbox" name="interest" value="运动" />
+                  <span class="checkbox">运动</span>
+                </label>
+                <label class="checkbox_custom">
+                  <input type="checkbox" name="interest" value="电子竞技" />
+                  <span class="checkbox">电子竞技</span>
+                </label>
+                <label class="checkbox_custom">
+                  <input type="checkbox" name="interest" value="手工" />
+                  <span class="checkbox">手工</span>
+                </label>
+                <label class="checkbox_custom">
+                  <input type="checkbox" name="interest" value="摄影" />
+                  <span class="checkbox">摄影</span>
+                </label>
+                <label class="checkbox_custom">
+                  <input type="checkbox" name="interest" value="旅游" />
+                  <span class="checkbox">旅游</span>
+                </label>
+              </td>
+              <td class="td_tip">
+                <p class="tip">请在给出的选项中选出感兴趣的项目(多选)</p>
+              </td>
+            </tr>
+            <tr class="layer_content">
+              <td class="td_head emphasizer" align="right">
+                <p>通信地址</p>
+              </td>
+              <td class="td_ele">
+                <div>
+                  <input type="text" name="address" id="address" placeholder="请输入你的常用地址..." required />
+                </div>
+              </td>
+              <td class="td_tip">
+                <p class="tip">现在定居的地址或常用邮送地址</p>
+              </td>
+            </tr>
+            <tr class="layer_content">
+              <td class="td_head emphasizer" align="right">
+                <p>邮政编码</p>
+              </td>
+              <td class="td_ele">
+                <div>
+                  <input type="text" name="mailcode" id="mailcode" placeholder="请输入常住地邮政编码..." required />
+                </div>
+              </td>
+              <td class="td_tip">
+                <p class="tip">通信地址对应的邮政编码</p>
+              </td>
+            </tr>
+            <tr class="layer_content">
+              <td class="td_head" align="right">
+                <p>头像</p>
+              </td>
+              <td class="td_ele">
+                <canvas id="display" bgcolor="red" background="red" width="180" height="200">
+                  Canvas is not supported on your explorer
+                </canvas>
+                <br />
+                <div>
+                  <input type="text" style="display: none" name="avator" id="avatorData" />
+                <input type="file" id="avatorFile" accept="image/*" />
+                </div>
+              </td>
+              <td class="td_tip">
+                <p class="tip">
+                  由于图片文件过大，使用DataUrl传输将出现431错误
+                </p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </fieldset>
+      <div align="center" class="footer" style="margin: 10px auto">
+        <input id="btn_compl" type="submit" value="确认" onclick="finalCheck" />
+        <input id="btn_reset" type="reset" value="重置" onclick="formReset()" />
+        <label class="checkbox_custom" style="transform: scale(0.75)">
+          <input type="checkbox" name="plicy" />
+          <span class="checkbox"></span>
+        </label>
+        <p style="display: inline-block">
+          我已阅读并同意<a class="clickable" onclick="((e)=>{alert('用户协议：尚未完成。')})()" tabindex="0">用户协议</a>
+        </p>
+      </div>
+    </form>
+  </div>
+  <div id="notif" class="notif_box hidden" onclick="navError();closeWarning();">
+    <span class="notif_msg_box">
+      <p id="notif_msg" align="left"></p>
+    </span>
+  </div>
+</body>
+<script type="text/javascript" src="lib/library.js"></script>
+<script type="text/javascript" src="lib/verification.js"></script>
+<script type="text/javascript" src="lib/checkrules.js"></script>
+<script type="text/javascript" src="lib/locs.js"></script>
+<script type="text/javascript" src="script.js"></script>
+
 </html>
